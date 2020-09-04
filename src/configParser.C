@@ -50,6 +50,13 @@ bool configParser::Init(std::string inConfigFileName)
       valStr = valStr + "," + tempVect[tI];
     }
 
+    while(valStr.size() > 0){
+      if(valStr.substr(0, 1).find(" ") != std::string::npos){
+	valStr.replace(0,1,"");
+      }
+      else break;
+    }
+    
     m_configVals[tempVect[0]] = valStr;
     tempVect.clear();
   }

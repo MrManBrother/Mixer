@@ -16,7 +16,7 @@ MKDIR_OUTPUT=mkdir -p $(PWD)/output
 MKDIR_LOGS=mkdir -p $(PWD)/logs
 MKDIR_PDF=mkdir -p $(PWD)/pdfDir
 
-all: mkdirBin mkdirLib mkdirLogs mkdirObj mkdirOutput mkdirPdf obj/checkMakeDir.o obj/configParser.o obj/reader.o lib/libMixer.so bin/runMixer.exe bin/testReader.exe
+all: mkdirBin mkdirLib mkdirLogs mkdirObj mkdirOutput mkdirPdf obj/checkMakeDir.o obj/configParser.o obj/reader.o lib/libMixer.so bin/runMixer.exe bin/testReader.exe bin/mixToSnippet.exe
 
 mkdirBin:
 	$(MKDIR_BIN)
@@ -54,6 +54,9 @@ bin/runMixer.exe: src/runMixer.C
 bin/testReader.exe: src/testReader.C
 	$(CXX) $(CXXFLAGS) src/testReader.C -o bin/testReader.exe $(ROOT) $(INCLUDE) $(LIB) -lMixer
 
+bin/mixToSnippet.exe: src/mixToSnippet.C
+	$(CXX) $(CXXFLAGS) src/mixToSnippet.C -o bin/mixToSnippet.exe $(ROOT) $(INCLUDE) $(LIB) -lMixer
+
 
 clean:
 	rm -f ./*~
@@ -66,7 +69,8 @@ clean:
 	rm -f include/#*#
 	rm -f input/*~
 	rm -f input/#*#
-	rm -f input/ntupleToHist/*~
+	rm -f input/samples/*~
+	rm -f input/config/*~
 	rm -f lib/*.so
 	rm -rf lib
 	rm -f obj/*.o

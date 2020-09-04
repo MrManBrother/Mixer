@@ -37,6 +37,21 @@ inline std::string returnAllCapsString(std::string inStr)
   return inStr;
 }
 
+inline std::string returnAllCapsFirstLetter(std::string inStr)
+{
+  const std::string lowStr = "abcdefghijklmnopqrstuvwxyz";
+  const std::string hiStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  if(inStr.size() != 0){
+    if(lowStr.find(inStr.substr(0, 1)) != std::string::npos){
+      inStr.replace(0, 1, hiStr.substr(lowStr.find(inStr.substr(0, 1)), 1));
+    }
+  }
+  
+  return inStr;
+}
+
+
 inline bool isStrFromCharSet(const std::string inStr, const std::string charSet)
 {
   for(unsigned int iter = 0; iter < inStr.size(); ++iter){
@@ -164,6 +179,18 @@ inline std::vector<std::string> spaceSepStringToVect(std::string inStr)
   }
   
   return retVect;
+}
+
+inline std::string returnAllCapsSentence(std::string inStr)
+{
+  std::vector<std::string> words = spaceSepStringToVect(inStr);
+  std::string outStr = "";
+  for(unsigned int wI = 0; wI < words.size(); ++wI){
+    outStr = outStr + returnAllCapsFirstLetter(words[wI]) + " ";
+  }
+  if(outStr.size() != 0) outStr.replace(outStr.size()-1, 1, "");
+  
+  return outStr;
 }
 
 inline bool vectContainsStr(std::string inStr, std::vector<std::string>* inVect)
