@@ -7,9 +7,13 @@ Dependencies are intentionally minimal - most linux/mac setups this should work 
 ## Build
 From a freshly cloned area do:
 
-> source setEnv.sh
-> make
+```
+source setEnv.sh
+make
+```
 
 To cleanup, do:
 
-> make clean
+```
+make clean
+```
